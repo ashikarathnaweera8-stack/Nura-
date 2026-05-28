@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N&#363;ra Co &#8212; Fuel the Rise</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0D1B2A;
+  --navy-mid:#1A2E42;
+  --mint:#1D9E75;
+  --mint-light:#5DCAA5;
+  --mint-pale:#E1F5EE;
+  --amber:#EF9F27;
+  --amber-dark:#854F0B;
+  --cream:#F7F9F8;
+  --white:#ffffff;
+  --text:#0D1B2A;
+  --muted:#4A6070;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 3rem;background:rgba(13,27,42,0.97);backdrop-filter:blur(12px);border-bottom:.5px solid rgba(29,158,117,0.2)}
+.nav-logo{display:flex;align-items:center;gap:.65rem;cursor:pointer;text-decoration:none}
+.nav-logo-mark{width:32px;height:32px}
+.nav-wordmark{font-family:'Playfair Display',serif;font-size:1.3rem;color:#fff;letter-spacing:-.01em}
+.nav-wordmark span{color:var(--mint-light);font-family:'DM Sans',sans-serif;font-weight:300;font-size:1rem}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{text-decoration:none;color:rgba(255,255,255,.55);font-size:.8rem;font-weight:500;letter-spacing:.06em;transition:color .2s;cursor:pointer}
+.nav-links a:hover{color:var(--mint-light)}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.cart-link{color:rgba(255,255,255,.55);font-size:.8rem;font-weight:500;letter-spacing:.06em;cursor:pointer;transition:color .2s}
+.cart-link:hover{color:var(--mint-light)}
+.cart-badge{background:var(--mint);color:#fff;border-radius:100px;padding:.15rem .5rem;font-size:.7rem;font-weight:700;margin-left:.3rem}
+.nav-cta{background:var(--mint);color:#fff;padding:.55rem 1.3rem;border-radius:100px;font-size:.8rem;font-weight:500;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s,transform .15s;letter-spacing:.04em}
+.nav-cta:hover{background:var(--mint-light);transform:translateY(-1px)}
+
+/* PAGES */
+.page{display:none;min-height:100vh;padding-top:68px}
+.page.active{display:block}
+
+/* ══ LANDING ══ */
+.hero{min-height:calc(100vh - 68px);display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:3rem 3rem 3rem 3.5rem;gap:4rem;background:var(--navy);position:relative;overflow:hidden}
+.hero-bg-glow{position:absolute;top:-10%;right:-5%;width:55%;height:110%;background:radial-gradient(ellipse,rgba(29,158,117,.13) 0%,transparent 65%);pointer-events:none}
+.hero-bg-glow2{position:absolute;bottom:-20%;left:10%;width:40%;height:60%;background:radial-gradient(ellipse,rgba(239,159,39,.07) 0%,transparent 70%);pointer-events:none}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;border:.5px solid rgba(93,202,165,.35);color:var(--mint-light);font-size:.7rem;font-weight:500;letter-spacing:.08em;padding:.4rem 1rem;border-radius:100px;margin-bottom:1.5rem;background:rgba(29,158,117,.08)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,5.5vw,5.2rem);line-height:1.0;color:#fff;letter-spacing:-.03em;margin-bottom:1.25rem}
+.hero h1 em{color:var(--mint-light);font-style:italic}
+.hero-sub{font-size:1rem;line-height:1.75;color:rgba(255,255,255,.5);max-width:420px;margin-bottom:2rem}
+.tagline-pill{display:inline-flex;align-items:center;gap:.5rem;background:var(--mint);color:#fff;padding:.5rem 1.25rem;border-radius:100px;font-size:.85rem;font-weight:500;margin-bottom:2.5rem;letter-spacing:.02em}
+.hero-stats{display:flex;gap:2rem;margin-bottom:2.5rem;padding:1.25rem 0;border-top:.5px solid rgba(255,255,255,.08);border-bottom:.5px solid rgba(255,255,255,.08)}
+.hstat{text-align:center}
+.hstat-n{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--mint-light);line-height:1}
+.hstat-l{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:.2rem}
+.hstat-sep{width:.5px;background:rgba(255,255,255,.1)}
+.hero-btns{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.btn-mint{background:var(--mint);color:#fff;padding:.85rem 2rem;border-radius:100px;font-weight:500;font-size:.95rem;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s,transform .2s}
+.btn-mint:hover{background:var(--mint-light);transform:translateY(-2px)}
+.btn-ghost-white{color:rgba(255,255,255,.6);font-size:.9rem;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;display:flex;align-items:center;gap:.4rem;transition:color .2s}
+.btn-ghost-white:hover{color:#fff}
+.btn-ghost-white::after{content:'→'}
+
+/* Bar visual */
+.hero-visual{display:flex;align-items:center;justify-content:center;position:relative}
+.product-float{position:relative;animation:float 5s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-14px) rotate(-2deg)}}
+.bar-wrapper{width:280px;height:420px;background:linear-gradient(160deg,var(--navy-mid) 0%,#0a1520 100%);border-radius:28px;border:.5px solid rgba(93,202,165,.2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;position:relative;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.5)}
+.bar-glow{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--mint),transparent)}
+.bar-body{width:160px;height:68px;border-radius:14px;background:linear-gradient(135deg,#1a0f05,#2d1a08,#1a0f05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.bar-body::after{content:'';position:absolute;top:0;left:0;right:0;height:30%;background:linear-gradient(180deg,rgba(255,255,255,.06),transparent)}
+.bar-ryse{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--mint-light);letter-spacing:.2em;position:relative;z-index:1}
+.bar-info{text-align:center}
+.bar-name{font-family:'Playfair Display',serif;color:#fff;font-size:1rem;margin-bottom:.3rem}
+.bar-sub{font-size:.72rem;color:rgba(255,255,255,.35);letter-spacing:.06em}
+.bar-macro-strip{display:flex;gap:1.5rem;padding:1rem 1.5rem;background:rgba(29,158,117,.1);border-radius:12px;border:.5px solid rgba(29,158,117,.2)}
+.bms{text-align:center}
+.bms-n{font-size:.9rem;font-weight:500;color:var(--mint-light)}
+.bms-l{font-size:.6rem;color:rgba(255,255,255,.3);letter-spacing:.06em;text-transform:uppercase;margin-top:.1rem}
+
+.float-badge{position:absolute;padding:.5rem 1rem;border-radius:100px;font-size:.72rem;font-weight:500;white-space:nowrap;animation:float 4s ease-in-out infinite}
+.fb1{top:30px;right:-35px;background:var(--navy-mid);color:var(--mint-light);border:.5px solid rgba(29,158,117,.4);animation-delay:.6s}
+.fb2{bottom:50px;left:-40px;background:var(--amber);color:var(--navy);font-weight:600;animation-delay:1.1s}
+
+/* Strips & sections */
+.mint-strip{background:var(--mint);padding:2rem 3rem;display:flex;justify-content:center;gap:5rem;flex-wrap:wrap}
+.ms-item{text-align:center}
+.ms-num{font-family:'Playfair Display',serif;font-size:2.2rem;color:#fff;font-weight:700}
+.ms-label{font-size:.7rem;color:rgba(255,255,255,.65);letter-spacing:.08em;text-transform:uppercase;margin-top:.2rem}
+
+.sec{padding:5.5rem 3rem}
+.sec-label{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mint);font-weight:500;margin-bottom:.65rem;display:flex;align-items:center;gap:.6rem}
+.sec-label::before{content:'';width:20px;height:1.5px;background:var(--mint);display:inline-block;border-radius:2px}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,2.8rem);line-height:1.15;letter-spacing:-.02em;margin-bottom:1.25rem;color:var(--navy)}
+
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;margin-top:2.5rem}
+.feat-card{background:#fff;border:.5px solid rgba(13,27,42,.07);border-radius:18px;padding:1.75rem 1.5rem;transition:transform .2s,box-shadow .2s,border-color .2s}
+.feat-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(13,27,42,.08);border-color:rgba(29,158,117,.25)}
+.feat-icon{width:44px;height:44px;background:var(--mint-pale);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:1.1rem}
+.feat-name{font-weight:500;font-size:.95rem;margin-bottom:.4rem;color:var(--navy)}
+.feat-desc{font-size:.83rem;color:var(--muted);line-height:1.65}
+
+/* Story section */
+.story-sec{background:var(--navy);padding:5.5rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.story-quote{font-family:'Playfair Display',serif;font-size:1.5rem;font-style:italic;line-height:1.55;color:rgba(255,255,255,.85);margin-bottom:1.5rem}
+.story-body{font-size:.9rem;line-height:1.85;color:rgba(255,255,255,.45)}
+.values{display:flex;flex-direction:column;gap:1rem}
+.val{display:flex;align-items:flex-start;gap:1rem;padding:1.25rem;background:rgba(255,255,255,.03);border-radius:14px;border:.5px solid rgba(255,255,255,.06);transition:border-color .2s}
+.val:hover{border-color:rgba(29,158,117,.3)}
+.val-icon{width:40px;height:40px;background:rgba(29,158,117,.12);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.val-title{font-weight:500;color:var(--mint-light);margin-bottom:.25rem;font-size:.9rem}
+.val-desc{font-size:.8rem;color:rgba(255,255,255,.4);line-height:1.6}
+
+/* CTA section */
+.cta-sec{background:var(--navy-mid);text-align:center;padding:5.5rem 3rem;position:relative;overflow:hidden}
+.cta-sec::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:300px;background:radial-gradient(ellipse,rgba(29,158,117,.12) 0%,transparent 70%);pointer-events:none}
+.cta-sec .sec-title{color:#fff}
+.cta-sec .sec-label{justify-content:center;color:var(--mint-light)}
+.cta-sec .sec-label::before{background:var(--mint-light)}
+.cta-tagline{font-family:'Playfair Display',serif;font-size:2.5rem;color:var(--mint-light);font-style:italic;margin-bottom:1rem}
+.cta-body{color:rgba(255,255,255,.45);max-width:460px;margin:0 auto 2.5rem;font-size:.95rem;line-height:1.7}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-white{background:#fff;color:var(--navy);padding:1rem 2.5rem;border-radius:100px;font-weight:500;font-size:.95rem;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:transform .2s}
+.btn-white:hover{transform:translateY(-2px)}
+.btn-outline-white{border:1px solid rgba(255,255,255,.25);color:#fff;padding:1rem 2.5rem;border-radius:100px;font-weight:500;font-size:.95rem;background:transparent;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s}
+.btn-outline-white:hover{background:rgba(255,255,255,.08)}
+
+footer{background:#080f18;color:rgba(255,255,255,.3);display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;padding:2rem 3rem;font-size:.78rem;gap:1rem}
+.footer-logo{display:flex;align-items:center;gap:.5rem}
+.footer-wordmark{font-family:'Playfair Display',serif;font-size:1.1rem;color:rgba(255,255,255,.65)}
+.footer-wordmark span{color:var(--mint)}
+.footer-center{text-align:center}
+.footer-right{text-align:right}
+.footer-tagline{color:var(--mint);font-style:italic;font-family:'Playfair Display',serif;font-size:.85rem}
+
+/* ══ PRODUCT PAGE ══ */
+.prod-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;padding:3.5rem 3rem;align-items:start}
+.prod-img{position:sticky;top:88px;background:var(--navy);border-radius:24px;min-height:480px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.5rem;overflow:hidden;border:.5px solid rgba(29,158,117,.15)}
+.prod-img-glow{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--mint),transparent)}
+.prod-bar{width:180px;height:72px;border-radius:14px;background:linear-gradient(135deg,#1a0f05,#2d1a08);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--mint-light);letter-spacing:.18em;animation:float 5s ease-in-out infinite}
+.prod-img-label{color:rgba(255,255,255,.4);font-size:.78rem;letter-spacing:.06em}
+.prod-thumbs{display:flex;gap:.75rem}
+.thumb{width:52px;height:52px;border-radius:10px;background:rgba(255,255,255,.05);border:.5px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer;transition:border-color .2s}
+.thumb.active,.thumb:hover{border-color:var(--mint)}
+.badges-row{display:flex;gap:.5rem;flex-wrap:wrap}
+.badge{padding:.3rem .8rem;border-radius:100px;font-size:.68rem;font-weight:500;letter-spacing:.04em}
+.badge-mint{background:var(--mint-pale);color:var(--mint)}
+.badge-navy{background:rgba(13,27,42,.08);color:var(--navy)}
+
+.prod-info h1{font-family:'Playfair Display',serif;font-size:2.6rem;line-height:1.1;letter-spacing:-.02em;margin-bottom:.5rem;color:var(--navy)}
+.prod-sub-tag{font-family:'Playfair Display',serif;font-style:italic;color:var(--mint);font-size:1rem;margin-bottom:1rem}
+.prod-desc{font-size:.9rem;color:var(--muted);line-height:1.8;margin-bottom:2rem}
+.prod-price{font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--navy);margin-bottom:.3rem}
+.prod-price span{font-size:.95rem;color:var(--muted);font-family:'DM Sans',sans-serif;font-weight:400}
+.price-note{font-size:.78rem;color:var(--muted);margin-bottom:1.75rem}
+
+.macros-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:2rem}
+.mcg{background:var(--cream);border:.5px solid rgba(13,27,42,.07);border-radius:12px;padding:.85rem;text-align:center}
+.mcg.hl{background:var(--navy)}
+.mcg-n{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--navy);line-height:1}
+.mcg.hl .mcg-n{color:var(--mint-light)}
+.mcg-l{font-size:.62rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-top:.2rem}
+.mcg.hl .mcg-l{color:rgba(255,255,255,.4)}
+
+.pack-row{display:flex;gap:.65rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.pack-btn{padding:.55rem 1.1rem;border-radius:100px;border:.5px solid rgba(13,27,42,.15);font-size:.82rem;cursor:pointer;background:transparent;font-family:'DM Sans',sans-serif;transition:all .2s;color:var(--text)}
+.pack-btn.sel,.pack-btn:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+.save-tag{font-size:.65rem;color:var(--mint);margin-left:.25rem;font-weight:500}
+.pack-btn.sel .save-tag{color:var(--mint-light)}
+
+.qty-wrap{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
+.qty-label{font-size:.82rem;color:var(--muted);font-weight:500}
+.qty-ctrl{display:flex;align-items:center;border:.5px solid rgba(13,27,42,.15);border-radius:100px;overflow:hidden}
+.qty-btn{width:34px;height:34px;background:none;border:none;font-size:1.1rem;cursor:pointer;color:var(--text);transition:background .15s}
+.qty-btn:hover{background:rgba(13,27,42,.06)}
+.qty-num{width:36px;text-align:center;font-weight:500;font-size:.95rem}
+
+.add-btn{width:100%;padding:1rem;background:var(--navy);color:#fff;border:none;border-radius:100px;font-size:.95rem;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background .2s,transform .2s;margin-bottom:.75rem}
+.add-btn:hover{background:var(--mint);transform:translateY(-2px)}
+.buy-btn{width:100%;padding:1rem;background:var(--mint);color:#fff;border:none;border-radius:100px;font-size:.95rem;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:transform .2s}
+.buy-btn:hover{transform:translateY(-2px)}
+
+.trust-row{display:flex;gap:1.25rem;margin-top:1.25rem;flex-wrap:wrap}
+.trust{font-size:.76rem;color:var(--muted);display:flex;align-items:center;gap:.35rem}
+
+.prod-tabs{margin-top:3.5rem;border-top:.5px solid rgba(13,27,42,.08);padding-top:1.75rem}
+.tab-nav{display:flex;gap:2rem;border-bottom:.5px solid rgba(13,27,42,.08);padding-bottom:.85rem;margin-bottom:1.75rem}
+.tab-btn{background:none;border:none;font-family:'DM Sans',sans-serif;font-size:.85rem;color:var(--muted);cursor:pointer;padding:.2rem 0;transition:color .2s;position:relative}
+.tab-btn.on{color:var(--navy);font-weight:500}
+.tab-btn.on::after{content:'';position:absolute;bottom:-.9rem;left:0;right:0;height:2px;background:var(--mint);border-radius:2px}
+.tab-panel{display:none}
+.tab-panel.on{display:block}
+.tab-panel p{font-size:.88rem;color:var(--muted);line-height:1.85}
+.ing-table{display:flex;flex-direction:column;gap:.6rem;margin-top:1rem}
+.ing-row{display:flex;justify-content:space-between;align-items:center;padding:.7rem 1rem;background:#fff;border:.5px solid rgba(13,27,42,.06);border-radius:10px;font-size:.85rem}
+.ing-row span:last-child{color:var(--mint);font-weight:500}
+
+/* ══ CART PAGE ══ */
+.cart-layout{display:grid;grid-template-columns:1fr 370px;gap:3rem;padding:3.5rem 3rem;align-items:start}
+.cart-h{font-family:'Playfair Display',serif;font-size:2.4rem;margin-bottom:2rem;color:var(--navy)}
+.empty-state{text-align:center;padding:4rem;color:var(--muted)}
+.empty-icon{font-size:4rem;margin-bottom:1rem}
+.cart-list{display:flex;flex-direction:column;gap:1rem}
+.cart-card{display:flex;gap:1.25rem;background:#fff;border:.5px solid rgba(13,27,42,.07);border-radius:18px;padding:1.4rem;align-items:center;transition:box-shadow .2s}
+.cart-card:hover{box-shadow:0 8px 24px rgba(13,27,42,.06)}
+.cart-img{width:76px;height:76px;background:var(--navy);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:.85rem;color:var(--mint-light);letter-spacing:.1em;flex-shrink:0}
+.cart-details{flex:1}
+.cart-name{font-weight:500;font-size:.95rem;margin-bottom:.2rem;color:var(--navy)}
+.cart-desc{font-size:.78rem;color:var(--muted)}
+.cart-rm{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.75rem;margin-top:.4rem;padding:0;font-family:'DM Sans',sans-serif;transition:color .2s}
+.cart-rm:hover{color:#E24B4A}
+.cart-price{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--navy)}
+
+.order-summary{background:#fff;border:.5px solid rgba(13,27,42,.07);border-radius:18px;padding:1.75rem;position:sticky;top:88px}
+.os-title{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:1.5rem;color:var(--navy)}
+.os-row{display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:.65rem;color:var(--muted)}
+.os-row.total{font-weight:500;color:var(--navy);font-size:1rem;border-top:.5px solid rgba(13,27,42,.08);padding-top:.65rem;margin-top:.65rem}
+.promo-wrap{display:flex;gap:.5rem;margin:1.1rem 0}
+.promo-in{flex:1;padding:.65rem .9rem;border:.5px solid rgba(13,27,42,.15);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.82rem;outline:none}
+.promo-in:focus{border-color:var(--mint)}
+.promo-apply{padding:.65rem 1.1rem;background:var(--navy);color:#fff;border:none;border-radius:10px;cursor:pointer;font-size:.82rem;font-family:'DM Sans',sans-serif}
+.checkout-btn{width:100%;padding:1rem;background:var(--mint);color:#fff;border:none;border-radius:100px;font-size:.95rem;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:1rem;transition:transform .2s}
+.checkout-btn:hover{transform:translateY(-2px)}
+
+.checkout-form{display:none;margin-top:1.75rem}
+.checkout-form.vis{display:block}
+.fs-title{font-weight:500;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.9rem;color:var(--navy)}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin-bottom:.65rem}
+.fg.full{grid-template-columns:1fr}
+.ff{display:flex;flex-direction:column;gap:.3rem}
+.ff label{font-size:.68rem;color:var(--muted);font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+.ff input,.ff select{padding:.7rem .9rem;border:.5px solid rgba(13,27,42,.15);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.82rem;outline:none;background:#fff;color:var(--text)}
+.ff input:focus,.ff select:focus{border-color:var(--mint)}
+.place-btn{width:100%;padding:1rem;background:var(--navy);color:#fff;border:none;border-radius:100px;font-size:.95rem;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:1.1rem;transition:background .2s,transform .2s}
+.place-btn:hover{background:var(--mint);transform:translateY(-2px)}
+
+.success{display:none;text-align:center;padding:2.5rem 1rem}
+.success.vis{display:block}
+.success-icon{font-size:3rem;margin-bottom:.75rem}
+.success-title{font-family:'Playfair Display',serif;font-size:1.6rem;margin-bottom:.6rem;color:var(--navy)}
+.success-msg{font-size:.85rem;color:var(--muted);line-height:1.7}
+
+/* Toast */
+.toast{position:fixed;bottom:1.75rem;right:1.75rem;background:var(--navy);color:#fff;padding:.9rem 1.4rem;border-radius:14px;font-size:.85rem;z-index:999;transform:translateY(100px);opacity:0;transition:all .35s;display:flex;align-items:center;gap:.65rem;border:.5px solid rgba(29,158,117,.3)}
+.toast.show{transform:translateY(0);opacity:1}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="showPage('landing')">
+    <svg class="nav-logo-mark" viewBox="0 0 32 32" fill="none">
+      <path d="M16 28 L4 20 L4 12 L16 4 L28 12 L28 20 Z" fill="none" stroke="rgba(93,202,165,0.2)" stroke-width="1"/>
+      <path d="M8 22 Q16 6 24 22" fill="none" stroke="#1D9E75" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="16" cy="10" r="2.5" fill="#5DCAA5"/>
+      <path d="M10 26 L22 26" stroke="rgba(93,202,165,0.4)" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <div class="nav-wordmark">N&#363;ra <span>Co</span></div>
+  </div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('product')">RYSE Bar</a></li>
+    <li><a onclick="showPage('landing')">Story</a></li>
+    <li><a onclick="showPage('cart')" class="cart-link">Cart <span class="cart-badge" id="cart-count">0</span></a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="nav-cta" onclick="showPage('product')">Shop Now</button>
+  </div>
+</nav>
+
+<!-- ══════ LANDING ══════ -->
+<div id="page-landing" class="page active">
+
+  <section class="hero">
+    <div class="hero-bg-glow"></div>
+    <div class="hero-bg-glow2"></div>
+    <div style="position:relative;z-index:1">
+      <div class="hero-eyebrow">New Zealand · Performance Nutrition</div>
+      <h1>Rise<br/><em>clean.</em><br/>Rise daily.</h1>
+      <div class="tagline-pill">✦ Fuel the rise.</div>
+      <p class="hero-sub">RYSE is a 60g performance bar built for athletes who don't compromise. Real protein. Real taste. Zero gut-wrecking compromises.</p>
+      <div class="hero-stats">
+        <div class="hstat"><div class="hstat-n">18g</div><div class="hstat-l">Protein</div></div>
+        <div class="hstat-sep"></div>
+        <div class="hstat"><div class="hstat-n">&lt;2g</div><div class="hstat-l">Sugar</div></div>
+        <div class="hstat-sep"></div>
+        <div class="hstat"><div class="hstat-n">290</div><div class="hstat-l">Kcal</div></div>
+        <div class="hstat-sep"></div>
+        <div class="hstat"><div class="hstat-n">NZ</div><div class="hstat-l">Made</div></div>
+      </div>
+      <div class="hero-btns">
+        <button class="btn-mint" onclick="showPage('product')">Shop RYSE Bar</button>
+        <button class="btn-ghost-white" onclick="document.getElementById('story').scrollIntoView({behavior:'smooth'})">Our story</button>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="product-float">
+        <div class="bar-wrapper">
+          <div class="bar-glow"></div>
+          <div class="bar-body"><div class="bar-ryse">RYSE</div></div>
+          <div class="bar-info">
+            <div class="bar-name">Dark Chocolate & Salted Almond</div>
+            <div class="bar-sub">60g · Made in New Zealand</div>
+          </div>
+          <div class="bar-macro-strip">
+            <div class="bms"><div class="bms-n">18g</div><div class="bms-l">Protein</div></div>
+            <div class="bms"><div class="bms-n">&lt;2g</div><div class="bms-l">Sugar</div></div>
+            <div class="bms"><div class="bms-n">290</div><div class="bms-l">Kcal</div></div>
+          </div>
+        </div>
+        <div class="float-badge fb1">🌿 Keto-friendly</div>
+        <div class="float-badge fb2">18g Protein</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="mint-strip">
+    <div class="ms-item"><div class="ms-num">18g</div><div class="ms-label">Whey Isolate + Collagen</div></div>
+    <div class="ms-item"><div class="ms-num">0g</div><div class="ms-label">Maltitol &mdash; ever</div></div>
+    <div class="ms-item"><div class="ms-num">85%</div><div class="ms-label">Dark Chocolate Coat</div></div>
+    <div class="ms-item"><div class="ms-num">NZ</div><div class="ms-label">Made in New Zealand</div></div>
+  </div>
+
+  <section class="sec" style="background:#fff">
+    <div class="sec-label">Why RYSE</div>
+    <h2 class="sec-title">No shortcuts.<br/>No excuses.</h2>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-icon">🥛</div><div class="feat-name">Dual-source protein</div><div class="feat-desc">Whey isolate and collagen peptides for muscle recovery and joint support &mdash; fast and functional.</div></div>
+      <div class="feat-card"><div class="feat-icon">🍫</div><div class="feat-name">85% dark chocolate</div><div class="feat-desc">Premium dark coat with a pinch of sea salt. Tastes like a reward, performs like a tool.</div></div>
+      <div class="feat-card"><div class="feat-icon">🌿</div><div class="feat-name">Keto-friendly</div><div class="feat-desc">Erythritol and monk fruit sweetness. Zero maltitol. Zero gut drama on your best morning.</div></div>
+      <div class="feat-card"><div class="feat-icon">🇳🇿</div><div class="feat-name">Made in New Zealand</div><div class="feat-desc">SQF-certified production. Traceable ingredients. Uncompromising standards from day one.</div></div>
+    </div>
+  </section>
+
+  <section class="story-sec" id="story">
+    <div>
+      <div class="sec-label" style="color:var(--mint-light)"><span style="background:var(--mint-light);display:inline-block;width:20px;height:1.5px;border-radius:2px"></span>Our story</div>
+      <p class="story-quote">"Built for your next rep. Your next km. Your next morning."</p>
+      <p class="story-body">RYSE was born out of frustration. Too many "performance" bars loaded with cheap sugars, gut-wrecking maltitol, and ingredient lists that read like a chemistry exam. N&#363;ra Co set out to build something different &mdash; a bar that actually tastes as good as it performs. Made in New Zealand. Built for the 5am athlete who doesn't compromise.</p>
+    </div>
+    <div class="values">
+      <div class="val"><div class="val-icon">🌅</div><div><div class="val-title">Designed for the morning athlete</div><div class="val-desc">Whether it's 5am at the gym or a 7km trail run, RYSE fuels your first move of the day.</div></div></div>
+      <div class="val"><div class="val-icon">🇳🇿</div><div><div class="val-title">Made in New Zealand</div><div class="val-desc">SQF-certified production. Traceable ingredients. Uncompromising quality standards throughout.</div></div></div>
+      <div class="val"><div class="val-icon">🔬</div><div><div class="val-title">No hidden shortcuts</div><div class="val-desc">Keto-friendly, gluten free, formulated without the ingredients buried in most bar fine print.</div></div></div>
+    </div>
+  </section>
+
+  <section class="cta-sec">
+    <div class="sec-label">Get RYSE</div>
+    <div class="cta-tagline">Fuel the rise.</div>
+    <p class="cta-body">Your next morning starts here. Built for your next rep, your next km, your next breakthrough. Use code RISE10 for 10% off your first order.</p>
+    <div class="cta-btns">
+      <button class="btn-white" onclick="showPage('product')">Shop RYSE Bar</button>
+      <button class="btn-outline-white" onclick="showPage('cart')">View Cart</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">
+      <svg width="24" height="24" viewBox="0 0 32 32" fill="none"><path d="M8 22 Q16 6 24 22" fill="none" stroke="#1D9E75" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="10" r="2.5" fill="#5DCAA5"/><path d="M10 26 L22 26" stroke="rgba(93,202,165,0.4)" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <div class="footer-wordmark">N&#363;ra <span>Co</span></div>
+    </div>
+    <div class="footer-center">© 2026 N&#363;ra Co. Made in New Zealand.</div>
+    <div class="footer-right footer-tagline">Fuel the rise.</div>
+  </footer>
+</div>
+
+<!-- ══════ PRODUCT PAGE ══════ -->
+<div id="page-product" class="page">
+  <div class="prod-layout">
+    <div>
+      <div class="prod-img" style="position:sticky;top:88px">
+        <div class="prod-img-glow"></div>
+        <div class="prod-bar">RYSE</div>
+        <div class="prod-img-label">Dark Chocolate & Salted Almond</div>
+        <div class="prod-thumbs">
+          <div class="thumb active">🍫</div>
+          <div class="thumb">🌰</div>
+          <div class="thumb">🎃</div>
+        </div>
+        <div class="badges-row">
+          <span class="badge badge-mint">Keto-friendly</span>
+          <span class="badge badge-mint">Gluten free</span>
+          <span class="badge badge-mint">Made in NZ</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="prod-info">
+      <div class="sec-label" style="margin-bottom:.4rem">N&#363;ra Co</div>
+      <h1>RYSE Bar</h1>
+      <div class="prod-sub-tag">Fuel the rise.</div>
+      <p class="prod-desc">18g of whey isolate and collagen peptides, sweetened cleanly with erythritol and monk fruit, bound in almond butter, loaded with pumpkin seeds, finished in an 85% dark chocolate coating with a pinch of sea salt. No maltitol. No sugar alcohols that wreck your gut. No flavour sacrificed for macros.</p>
+
+      <div class="macros-grid">
+        <div class="mcg hl"><div class="mcg-n">18g</div><div class="mcg-l">Protein</div></div>
+        <div class="mcg"><div class="mcg-n">&lt;2g</div><div class="mcg-l">Sugar</div></div>
+        <div class="mcg"><div class="mcg-n">290</div><div class="mcg-l">Kcal</div></div>
+        <div class="mcg"><div class="mcg-n">60g</div><div class="mcg-l">Weight</div></div>
+      </div>
+
+      <div class="prod-price" id="disp-price">$4.50 <span>per bar</span></div>
+      <div class="price-note" id="disp-note">Free shipping on orders over $40 · Use code RISE10 for 10% off</div>
+
+      <div class="pack-row" id="pack-row">
+        <button class="pack-btn sel" data-qty="1" data-price="4.50" onclick="selPack(this)">Single <span class="save-tag">$4.50</span></button>
+        <button class="pack-btn" data-qty="6" data-price="24.00" onclick="selPack(this)">6-pack <span class="save-tag">Save 11%</span></button>
+        <button class="pack-btn" data-qty="12" data-price="42.00" onclick="selPack(this)">12-pack <span class="save-tag">Save 22%</span></button>
+        <button class="pack-btn" data-qty="24" data-price="72.00" onclick="selPack(this)">24-pack <span class="save-tag">Save 33%</span></button>
+      </div>
+
+      <div class="qty-wrap">
+        <span class="qty-label">Qty</span>
+        <div class="qty-ctrl">
+          <button class="qty-btn" onclick="chgQty(-1)">−</button>
+          <span class="qty-num" id="qty-disp">1</span>
+          <button class="qty-btn" onclick="chgQty(1)">+</button>
+        </div>
+      </div>
+
+      <button class="add-btn" onclick="addCart()">Add to Cart</button>
+      <button class="buy-btn" onclick="buyNow()">Buy Now &mdash; Fuel the Rise</button>
+
+      <div class="trust-row">
+        <div class="trust">🚚 Free shipping $40+</div>
+        <div class="trust">🔄 Easy returns</div>
+        <div class="trust">🇳🇿 Made in NZ</div>
+        <div class="trust">✅ Gluten free</div>
+      </div>
+
+      <div class="prod-tabs">
+        <div class="tab-nav">
+          <button class="tab-btn on" onclick="showTab('desc',this)">Description</button>
+          <button class="tab-btn" onclick="showTab('ing',this)">Ingredients</button>
+          <button class="tab-btn" onclick="showTab('nut',this)">Nutrition</button>
+        </div>
+        <div class="tab-panel on" id="tab-desc">
+          <p>RYSE was born out of frustration with bars that sacrificed taste for macros or loaded up on cheap sweeteners. We wanted something that performs as good as it tastes.</p>
+          <p style="margin-top:1rem">Each 60g bar packs 18g of dual-source protein (whey isolate + collagen peptides), bound in natural almond butter, loaded with pumpkin seeds for magnesium, and finished in an 85% dark chocolate coat with sea salt. Keto-friendly, gluten free, zero maltitol.</p>
+        </div>
+        <div class="tab-panel" id="tab-ing">
+          <div class="ing-table">
+            <div class="ing-row"><span>Whey Protein Isolate</span><span>Primary protein source</span></div>
+            <div class="ing-row"><span>Collagen Peptides</span><span>Joint & recovery support</span></div>
+            <div class="ing-row"><span>Almond Butter</span><span>Natural binding, healthy fats</span></div>
+            <div class="ing-row"><span>Pumpkin Seeds</span><span>Magnesium & crunch</span></div>
+            <div class="ing-row"><span>85% Dark Chocolate</span><span>Premium coating</span></div>
+            <div class="ing-row"><span>Erythritol & Monk Fruit</span><span>Clean sweetness, no spike</span></div>
+            <div class="ing-row"><span>Sea Salt</span><span>Flavour finish</span></div>
+          </div>
+        </div>
+        <div class="tab-panel" id="tab-nut">
+          <div class="ing-table">
+            <div class="ing-row"><span>Energy</span><span>290 kcal / 1213 kJ</span></div>
+            <div class="ing-row"><span>Protein</span><span>18g</span></div>
+            <div class="ing-row"><span>Total Carbohydrate</span><span>14g</span></div>
+            <div class="ing-row"><span>&mdash; of which sugars</span><span>&lt;2g</span></div>
+            <div class="ing-row"><span>Total Fat</span><span>16g</span></div>
+            <div class="ing-row"><span>&mdash; of which saturated</span><span>6g</span></div>
+            <div class="ing-row"><span>Dietary Fibre</span><span>4g</span></div>
+            <div class="ing-row"><span>Sodium</span><span>180mg</span></div>
+          </div>
+          <p style="margin-top:1rem;font-size:.72rem;color:var(--muted)">Per 60g bar. Gluten free · Keto-friendly · No maltitol · No artificial colours or flavours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer><div class="footer-logo"><svg width="24" height="24" viewBox="0 0 32 32" fill="none"><path d="M8 22 Q16 6 24 22" fill="none" stroke="#1D9E75" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="10" r="2.5" fill="#5DCAA5"/><path d="M10 26 L22 26" stroke="rgba(93,202,165,0.4)" stroke-width="1.5" stroke-linecap="round"/></svg><div class="footer-wordmark">N&#363;ra <span>Co</span></div></div><div class="footer-center">© 2026 N&#363;ra Co. Made in New Zealand.</div><div class="footer-right footer-tagline">Fuel the rise.</div></footer>
+</div>
+
+<!-- ══════ CART PAGE ══════ -->
+<div id="page-cart" class="page">
+  <div class="cart-layout">
+    <div>
+      <h1 class="cart-h">Your Cart</h1>
+      <div id="cart-empty" class="empty-state" style="display:none">
+        <div class="empty-icon">🛒</div>
+        <p style="font-size:1rem;margin-bottom:1.25rem;color:var(--navy);font-weight:500">Your cart is empty</p>
+        <button class="btn-mint" onclick="showPage('product')">Shop RYSE Bar</button>
+      </div>
+      <div id="cart-list" class="cart-list"></div>
+    </div>
+
+    <div>
+      <div class="order-summary">
+        <div class="os-title">Order Summary</div>
+        <div class="os-row"><span>Subtotal</span><span id="os-sub">$0.00</span></div>
+        <div class="os-row"><span>Shipping</span><span id="os-ship">Calculated at checkout</span></div>
+        <div class="os-row total"><span>Total</span><span id="os-total">$0.00</span></div>
+        <div class="promo-wrap">
+          <input class="promo-in" type="text" placeholder="Promo code (try RISE10)" id="promo-in">
+          <button class="promo-apply" onclick="applyPromo()">Apply</button>
+        </div>
+        <button class="checkout-btn" id="co-btn" onclick="showCheckout()">Proceed to Checkout</button>
+
+        <div class="checkout-form" id="co-form">
+          <div style="margin-bottom:1.4rem">
+            <div class="fs-title">Contact</div>
+            <div class="fg full"><div class="ff"><label>Email</label><input type="email" placeholder="you@example.com"></div></div>
+          </div>
+          <div style="margin-bottom:1.4rem">
+            <div class="fs-title">Shipping Address</div>
+            <div class="fg"><div class="ff"><label>First Name</label><input type="text" placeholder="Jane"></div><div class="ff"><label>Last Name</label><input type="text" placeholder="Smith"></div></div>
+            <div class="fg full"><div class="ff"><label>Address</label><input type="text" placeholder="123 Main Street"></div></div>
+            <div class="fg"><div class="ff"><label>City</label><input type="text" placeholder="Auckland"></div><div class="ff"><label>Postcode</label><input type="text" placeholder="1010"></div></div>
+            <div class="fg full"><div class="ff"><label>Country</label><select><option>New Zealand</option><option>Australia</option><option>United Kingdom</option></select></div></div>
+          </div>
+          <div>
+            <div class="fs-title">Payment</div>
+            <div class="fg full"><div class="ff"><label>Card Number</label><input type="text" placeholder="•••• •••• •••• ••••" maxlength="19"></div></div>
+            <div class="fg"><div class="ff"><label>Expiry</label><input type="text" placeholder="MM / YY" maxlength="7"></div><div class="ff"><label>CVC</label><input type="text" placeholder="•••" maxlength="4"></div></div>
+          </div>
+          <button class="place-btn" onclick="placeOrder()">Place Order &mdash; Fuel the Rise 🎉</button>
+        </div>
+
+        <div class="success" id="success">
+          <div class="success-icon">🎉</div>
+          <div class="success-title">Order placed!</div>
+          <p class="success-msg">Thank you for your order. Confirmation coming to your inbox. Time to rise.</p>
+          <button class="btn-mint" style="margin-top:1.5rem" onclick="resetHome()">Back to Home</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer><div class="footer-logo"><svg width="24" height="24" viewBox="0 0 32 32" fill="none"><path d="M8 22 Q16 6 24 22" fill="none" stroke="#1D9E75" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="10" r="2.5" fill="#5DCAA5"/><path d="M10 26 L22 26" stroke="rgba(93,202,165,0.4)" stroke-width="1.5" stroke-linecap="round"/></svg><div class="footer-wordmark">N&#363;ra <span>Co</span></div></div><div class="footer-center">© 2026 N&#363;ra Co. Made in New Zealand.</div><div class="footer-right footer-tagline">Fuel the rise.</div></footer>
+</div>
+
+<div class="toast" id="toast"><span>🛒</span><span id="toast-msg">Added to cart!</span></div>
+
+<script>
+var cart=[];var selPk={qty:1,price:4.50};var qty=1;
+function showPage(n){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+n).classList.add('active');window.scrollTo(0,0);if(n==='cart')renderCart();}
+function selPack(el){document.querySelectorAll('.pack-btn').forEach(b=>b.classList.remove('sel'));el.classList.add('sel');selPk={qty:parseInt(el.dataset.qty),price:parseFloat(el.dataset.price)};var pb=(selPk.price/selPk.qty).toFixed(2);document.getElementById('disp-price').innerHTML='$'+selPk.price.toFixed(2)+' <span>'+(selPk.qty>1?selPk.qty+'-pack':'per bar')+'</span>';document.getElementById('disp-note').textContent=selPk.qty>1?'$'+pb+' per bar':'Free shipping on orders over $40 · Use code RISE10 for 10% off';}
+function chgQty(d){qty=Math.max(1,qty+d);document.getElementById('qty-disp').textContent=qty;}
+function addCart(){cart.push({name:'RYSE Bar',desc:'Dark Chocolate & Salted Almond · '+(selPk.qty>1?selPk.qty+'-pack':'Single'),price:selPk.price*qty,qty:qty});updateBadge();showToast('Added to cart!');}
+function buyNow(){addCart();showPage('cart');}
+function updateBadge(){document.getElementById('cart-count').textContent=cart.length;}
+function renderCart(){var ce=document.getElementById('cart-empty');var cl=document.getElementById('cart-list');if(cart.length===0){ce.style.display='block';cl.style.display='none';}else{ce.style.display='none';cl.style.display='flex';cl.innerHTML=cart.map((item,i)=>'<div class="cart-card"><div class="cart-img">RYSE</div><div class="cart-details"><div class="cart-name">'+item.name+'</div><div class="cart-desc">'+item.desc+' · Qty: '+item.qty+'</div><button class="cart-rm" onclick="rmItem('+i+')">Remove</button></div><div class="cart-price">$'+item.price.toFixed(2)+'</div></div>').join('');}var sub=cart.reduce((s,i)=>s+i.price,0);var ship=sub>=40?0:6.99;document.getElementById('os-sub').textContent='$'+sub.toFixed(2);document.getElementById('os-ship').textContent=ship===0?'Free':'$'+ship.toFixed(2);document.getElementById('os-total').textContent='$'+(sub+ship).toFixed(2);}
+function rmItem(i){cart.splice(i,1);updateBadge();renderCart();}
+function applyPromo(){var c=document.getElementById('promo-in').value.trim().toUpperCase();showToast(c==='RISE10'?'10% discount applied!':'Invalid promo code');}
+function showCheckout(){if(cart.length===0){showToast('Your cart is empty!');return;}document.getElementById('co-form').classList.add('vis');document.getElementById('co-btn').style.display='none';}
+function placeOrder(){document.getElementById('co-form').classList.remove('vis');document.getElementById('success').classList.add('vis');cart=[];updateBadge();}
+function resetHome(){document.getElementById('success').classList.remove('vis');document.getElementById('co-btn').style.display='block';showPage('landing');}
+function showTab(name,btn){document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('on'));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('on'));btn.classList.add('on');document.getElementById('tab-'+name).classList.add('on');}
+function showToast(msg){var t=document.getElementById('toast');document.getElementById('toast-msg').textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2800);}
+</script>
+</body>
+</html>
